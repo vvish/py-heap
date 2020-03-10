@@ -5,22 +5,17 @@ def add_symetric_edge(adj_list, node_from, node_to, weight):
     adj_list.setdefault(node_to, []).append((node_from, weight))
 
 def get_edges_from(adj_list, node_from):
-    result = []
-
     if node_from not in adj_list:
-        return result
-
-    for edge in adj_list[node_from]:
-        result.append((edge[0], edge[1]))
-
-    return result
+        return []
+    else:
+        return [(e[0], e[1]) for e in adj_list[node_from]]
 
 def get_nodes(adj_list):
     nodes = set()
+    
     for node, edges in adj_list.items():
         nodes.add(node)
-        for edge in edges:
-            nodes.add(edge[0])
+        nodes.update([e[0] for e in edges])
 
     return list(nodes)
 

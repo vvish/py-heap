@@ -143,3 +143,10 @@ def test_sort():
     heap = IndexedHeap({1:4, 2:2, 3:3, 4:1, 5:5})
 
     assert list(sort(heap)) == [(4, 1), (2, 2), (3, 3), (1, 4), (5, 5)]
+
+def test_iterator():
+    heap = IndexedHeap({1:4, 2:2, 3:3, 4:1, 5:5})
+
+    iterated_items = [i for i in heap]
+
+    assert iterated_items == heap.items(), "Iteration should be performed over all items in the heap order"

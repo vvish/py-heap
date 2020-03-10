@@ -88,6 +88,10 @@ class IndexedHeap:
 
         self.__heapify_down(item_index)
 
+    def __iter__(self):
+        return (i for i in self.items())
+
+
     def items(self):
         """
         Method return items contained in the Heap
@@ -190,17 +194,15 @@ class IndexedHeap:
         left = self.__left_child(index)
         right = self.__right_child(index)
 
-        if left < len(self.__items) and self.__are_items_in_order(left, index):
-            largest = left
-        else:
-            largest = index
+        swap_position = left if left < len(
+            self.__items) and self.__are_items_in_order(left, index) else index
 
-        if right < len(self.__items) and self.__are_items_in_order(right, largest):
-            largest = right
+        if right < len(self.__items) and self.__are_items_in_order(right, swap_position):
+            swap_position = right
 
-        if largest != index:
-            self.__swap(index, largest)
-            self.__heapify_down(largest)
+        if swap_position != index:
+            self.__swap(index, swap_position)
+            self.__heapify_down(swap_position)
 
     def __heapify_up(self, item):
         parent = self.__parent(item)
