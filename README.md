@@ -8,7 +8,7 @@ algorithm
 ## Introduction
 
 The component provides functionality of the binary heap with an extension such as 
-all items are referenced by the unique key (similar to dictionary). 
+all items are referenced by an unique key (similar to dictionary).
 The heap can be constructed from a dictionary in a way that dictionary keys will be
 used to reference items and the dictionary values will be used as keys for sorting in the heap.
 
@@ -34,8 +34,8 @@ predecate that can be specified during heap creation.
 ```python
 # the custom key function is used
 class Value:
-def __init__(self, key):
-    self.key = key
+    def __init__(self, key):
+        self.key = key
     
 heap = IndexedHeap({1:Value(1), 2:Value(2), 3:Value(3), 4:Value(4), 5:Value(5)}, key=lambda i: i.key)
 

@@ -6,9 +6,9 @@ def add_symetric_edge(adj_list, node_from, node_to, weight):
 
 def get_edges_from(adj_list, node_from):
     if node_from not in adj_list:
-        return []
+        return ()
     else:
-        return [(e[0], e[1]) for e in adj_list[node_from]]
+        return ((e[0], e[1]) for e in adj_list[node_from])
 
 def get_nodes(adj_list):
     nodes = set()
@@ -38,7 +38,8 @@ def dijkstra_shortest_paths(adj_list, node_from, infinity_value=0xFFFFFFFF):
 if __name__ == '__main__':
 
     #  Graph from https://commons.wikimedia.org/wiki/File:Dijkstra_graph0.PNG
-    
+    #  Distances are (1,2) = 7, (1,3) = 9, (1,4) = 20, (1,5) = 20, (1,6) = 11
+
     graph = {}
     add_symetric_edge(graph, 1, 2, 7)
     add_symetric_edge(graph, 1, 6, 14)
