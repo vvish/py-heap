@@ -126,8 +126,9 @@ def test_utils_are_sorted_heaps_equal():
 def test_empty_heap_creation():
     heap = IndexedHeap()
     assert len(heap) == 0, 'The length should be equal to 0'
-    assert len(heap) == len(heap.get_items(
-    )), 'The length should be exact as the number of the stored elements'
+    assert len(heap) == len(
+        list(heap),
+    ), 'The length should be exact as the number of the stored elements'
     assert heap.pop_first() == (None, None), 'Pop oeration should return None'
 
 
@@ -172,7 +173,7 @@ def test_heap_default_order():
 
     heap = IndexedHeap(test_values)
     assert is_heap(
-        heap.get_items(),
+        list(heap),
         start_position=0,
         compare_fn=lambda first, second: first[1] <= second[1],
     ), 'Min heap should be created by default'
@@ -192,7 +193,7 @@ def test_heap_reversed_order():
     heap = IndexedHeap(test_values, reverse=True)
 
     assert is_heap(
-        heap.get_items(),
+        list(heap),
         start_position=0,
         compare_fn=lambda first, second: first[1] >= second[1],
     ), 'Max heap should be created'
@@ -249,7 +250,7 @@ def test_heap_update_item_key_decreased():
     heap[5] = 0
 
     assert is_heap(
-        heap.get_items(),
+        list(heap),
         start_position=0,
         compare_fn=lambda first, second: first[1] <= second[1],
     ), 'Min heap should be created by default'
@@ -291,7 +292,7 @@ def test_heap_created_with_custom_key_second_value_used_as_key():
     )
 
     assert is_heap(
-        heap.get_items(),
+        list(heap),
         start_position=0,
         compare_fn=lambda first, second: first[1].key <= second[1].key
     ), 'Min heap should be created by default'
@@ -320,9 +321,9 @@ def test_heap_sort():
 
 
 def test_heap_iterator():
-    heap = IndexedHeap({1: 4, 2: 2, 3: 3, 4: 1, 5: 5})
+    test_items = {1: 4, 2: 2, 3: 3, 4: 1, 5: 5}
+    heap = IndexedHeap(test_items)
 
-    iterated_items = [it for it in heap]
-
-    assert iterated_items == heap.get_items(
-    ), 'Iteration should be performed over all items in the heap order'
+    assert set(heap) == set(
+        test_items.items(),
+    ), 'Iteration should be performed over all items in the heap'

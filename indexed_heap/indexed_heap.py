@@ -160,19 +160,7 @@ class IndexedHeap(object):
         iterable
             object to iterate items
         """
-        return (it for it in self.get_items())
-
-    def get_items(self):
-        """
-        Return items contained in the Heap.
-
-        Returns
-        -------
-        array_like
-            List of tuples containing key/item in the heap order
-
-        """
-        return self._heap_items
+        return (it for it in self._heap_items)
 
     def pop_first(self):
         """
