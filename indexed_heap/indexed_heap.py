@@ -3,7 +3,7 @@
 
 class IndexedHeap(object):
     """
-    Binary heap with support for stored values modifications.
+    Binary heap with support for modifications of stored values.
 
     Creates a heap object constructed from `items_to_add` dictionary.
     The keys of the dictionary will be used to reference items of the
