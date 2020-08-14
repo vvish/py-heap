@@ -72,6 +72,27 @@ class IndexedHeap(object):
 
         self._create_heap()
 
+    def __eq__(self, other):
+        """
+        Compare objects for equality.
+
+        The objects are equal if the internal heaps are equal
+
+        Parameters
+        ----------
+        other : IndexedHeap
+            object to compare with
+
+        Returns
+        -------
+        bool
+            indicates if the objects are equal
+        """
+        return (
+            isinstance(other, IndexedHeap)
+            and self._heap_items == other._heap_items
+        )
+
     def __len__(self):
         """
         Return length (items count) of the heap.

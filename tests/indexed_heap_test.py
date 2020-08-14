@@ -84,6 +84,18 @@ def test_empty_heap_creation():
     assert heap.pop_first() == (None, None), 'Pop oeration should return None'
 
 
+def test_heap_eq_neq():
+    empty_heap1 = IndexedHeap()
+    empty_heap2 = IndexedHeap()
+    not_empty_heap1 = IndexedHeap({1: 2})
+    not_empty_heap2 = IndexedHeap({1: 2, 3: 4})
+
+    assert empty_heap1 is not empty_heap2, 'Two heaps are not the same object'
+    assert empty_heap1 == empty_heap2, 'Two empty heaps should be equal'
+    assert empty_heap1 != not_empty_heap1, 'Two heaps are not equal'
+    assert not_empty_heap1 != not_empty_heap2, 'Two heaps are not equal'
+
+
 class DefaultHeapFixture(object):
     test_values = {1: 4, 2: 2, 3: 3, 4: 1, 5: 5}
 
